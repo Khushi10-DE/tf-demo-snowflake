@@ -9,25 +9,24 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout your code
+      # Checkout repo
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Setup Terraform with CLI token for Terraform Cloud
+      # Setup Terraform and authenticate to Terraform Cloud
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.7.0
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      # Step 3: Initialize Terraform (connects to Terraform Cloud remote backend)
+      # Initialize Terraform (connects to Terraform Cloud remote backend)
       - name: Terraform Init
         run: terraform init
 
-      # Step 4: Plan (Terraform Cloud will use variables from workspace)
+      # Plan and Apply
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 5: Apply (Terraform Cloud will use variables from workspace)
       - name: Terraform Apply
         run: terraform apply -auto-approve
