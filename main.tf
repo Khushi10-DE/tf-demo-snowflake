@@ -18,7 +18,7 @@ provider "snowflake" {
   account  = "AIBZVYU-UDB39802"
   username = "KHUSHBUGOHIL"
   role     = "SYSADMIN"
-  password = var.snowflake_password
+  password = var.SNOWFLAKE_PASSWORD
 }
 
 resource "snowflake_database" "demo_db" {
